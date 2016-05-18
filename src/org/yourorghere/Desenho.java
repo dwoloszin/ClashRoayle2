@@ -27,7 +27,7 @@ public class Desenho {
         // Clear the drawing area
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glPushMatrix();
-        gl.glTranslatef(1.0f, 0.0f, 0.0f);
+        gl.glTranslatef(0.0f, 0.0f, 5.0f);
         gl.glPushMatrix();
         gl.glTranslatef(1.5f, 0.0f, -6.0f);
         gl.glRotatef(0.f, 0.f, 1.0f, 0f);
@@ -364,12 +364,13 @@ public class Desenho {
         gl.glVertex3f(1.0f*x, 0.905f*x, 1.0f*x);                // Bottom Left Of The Quad (Right)
         gl.glVertex3f(1.0f*x, 0.905f*x,-1.0f*x);		// Bottom Right Of The Quad (Right)
         
-        
+        //Porta torre do rei
         gl.glColor3f(0.12f, 0.56f, 1.0f);               // Set The Color To Azul Furtivo
-        gl.glVertex3f( 0.3f*x, 0.0f*x, 1.0f*x);		// Top Right Of The Quad (Front)
-        gl.glVertex3f(-0.3f*x, 0.0f*x, 1.0f*x);		// Top Left Of The Quad (Front)
-        gl.glVertex3f(-0.3f*x,-0.89f*x, 1.0f*x);	// Bottom Left Of The Quad (Front)
-        gl.glVertex3f( 0.3f*x,-0.89f*x, 1.0f*x);	// Bottom Right Of The Quad (Front)
+        
+        gl.glVertex3f( 0.3f*x, 0.0f*x, 0.89f*x);		// Top Right Of The Quad (Front)
+        gl.glVertex3f(-0.3f*x, 0.0f*x, 0.89f*x);		// Top Left Of The Quad (Front)
+        gl.glVertex3f(-0.3f*x,-0.89f*x, 0.95f*x);	// Bottom Left Of The Quad (Front)
+        gl.glVertex3f( 0.3f*x,-0.89f*x, 0.95f*x);	// Bottom Right Of The Quad (Front)
         
         
       gl.glEnd();
