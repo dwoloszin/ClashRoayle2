@@ -30,8 +30,6 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 	private TextureData td;
 	private ByteBuffer buffer;	
 	
-        
-       
 	/**
 	 * Construtor da classe Renderer que não recebe parâmetros.
 	 */
@@ -65,7 +63,6 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		drawable.setGL(new DebugGL(gl));        
 
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-                
 		gl.glEnable(GL.GL_DEPTH_TEST);    
 		
 		gl.glEnable(GL.GL_LIGHT0);
@@ -79,7 +76,7 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		gl.glShadeModel(GL.GL_SMOOTH);
 		
 		// Comandos de inicialização para textura
-		loadImage("rock.jpg");
+		loadImage("xadres.jpg");
                
 		
 		// Gera identificador de textura
@@ -148,18 +145,80 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		
 		gl.glLineWidth(2);
 		
+		// Desenha uma esfera azul
                 
-		           
+                gl.glEnable(GL.GL_TEXTURE_2D); 
+
+                float texgen_s[] = {0.5f, 0.0f, 0.0f, 0.5f}; 
+                float texgen_t[] = {0.0f, 0.5f, 0.0f, 0.5f}; 
+
+                gl.glTexGeni(GL.GL_S, GL.GL_TEXTURE_GEN_MODE, GL.GL_EYE_LINEAR); 
+                gl.glTexGeni(GL.GL_T, GL.GL_TEXTURE_GEN_MODE, GL.GL_EYE_LINEAR); 
+
+                gl.glTexGenfv(GL.GL_S, GL.GL_OBJECT_PLANE, texgen_s, 0); 
+                gl.glTexGenfv(GL.GL_T, GL.GL_OBJECT_PLANE, texgen_t, 0);	
+
+                gl.glEnable(GL.GL_TEXTURE_GEN_S); // Habilita a geração da textura 
+                gl.glEnable(GL.GL_TEXTURE_GEN_T); 
+
+                gl.glColor3f(1.0f, 1.0f, 1.0f); 
                 
-                
+		//gl.glColor3f(0.0f, 0.0f, 1.0f);
+		gl.glPushMatrix();
+			gl.glTranslatef(30.0f, 0.0f, 0.0f);
+			glut.glutSolidSphere(24, 30, 30);
+		gl.glPopMatrix();
+		
 		// Desenha um cubo no qual a textura é aplicada
                 
                 gl.glDisable(GL.GL_TEXTURE_GEN_S); 
                 gl.glDisable(GL.GL_TEXTURE_GEN_T); 
     
-		gl.glEnable(GL.GL_TEXTURE_2D);	// Primeiro habilita uso de textura
-                
-		Desenho clash = new Desenho(gl);
+		gl.glEnable(GL.GL_TEXTURE_2D);	// Primeiro habilita uso de textura	  	
+		gl.glPushMatrix();
+			gl.glTranslatef(-30.0f, 0.0f, 0.0f);
+			gl.glScalef(16.0f, 16.0f, 16.0f);
+			gl.glColor3f(1.0f, 1.0f, 1.0f);
+			gl.glBegin (GL.GL_QUADS );
+				// Especifica a coordenada de textura para cada vértice
+				// Face frontal
+				gl.glNormal3f(0.0f,0.0f,-1.0f);
+				gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f, -1.0f,  1.0f);
+				gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f, -1.0f,  1.0f);
+				gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,  1.0f,  1.0f);
+				gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f(-1.0f,  1.0f,  1.0f);				
+				// Face posterior
+				gl.glNormal3f(0.0f,0.0f,1.0f);
+				gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+				gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f(-1.0f,  1.0f, -1.0f);
+				gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f( 1.0f,  1.0f, -1.0f);
+				gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, -1.0f);
+				// Face superior
+				gl.glNormal3f(0.0f,1.0f,0.0f);
+				gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f,  1.0f, -1.0f);
+				gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f(-1.0f,  1.0f,  1.0f);
+				gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f,  1.0f,  1.0f);
+				gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f,  1.0f, -1.0f);
+				// Face inferior
+				gl.glNormal3f(0.0f,-1.0f,0.0f);
+				gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+				gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f( 1.0f, -1.0f, -1.0f);
+				gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f,  1.0f);
+				gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f,  1.0f);
+				// Face lateral direita
+				gl.glNormal3f(1.0f,0.0f,0.0f);
+				gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f, -1.0f);
+				gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f( 1.0f,  1.0f, -1.0f);
+				gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f( 1.0f,  1.0f,  1.0f);
+				gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f( 1.0f, -1.0f,  1.0f);
+				// Face lateral esquerda
+				gl.glNormal3f(-1.0f,0.0f,0.0f);
+				gl.glTexCoord2f(0.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f, -1.0f);
+				gl.glTexCoord2f(1.0f, 0.0f); gl.glVertex3f(-1.0f, -1.0f,  1.0f);
+				gl.glTexCoord2f(1.0f, 1.0f); gl.glVertex3f(-1.0f,  1.0f,  1.0f);
+				gl.glTexCoord2f(0.0f, 1.0f); gl.glVertex3f(-1.0f,  1.0f, -1.0f);
+			gl.glEnd();
+		gl.glPopMatrix();
 		gl.glDisable(GL.GL_TEXTURE_2D);	//	Desabilita uso de textura
 	}
 
