@@ -30,9 +30,7 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 	private TextureData td;
 	private ByteBuffer buffer;	
 	
-        
-       
-	/**
+        	/**
 	 * Construtor da classe Renderer que não recebe parâmetros.
 	 */
 	public Renderer()
@@ -49,6 +47,7 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		obsZ = 200; 
 	
 		luz = true;
+                
 	}
 	
 	/**
@@ -147,6 +146,10 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		defineIluminacao();
 		
 		gl.glLineWidth(2);
+                
+               
+                
+                
 		
                 
 		           
@@ -161,6 +164,10 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
                 
 		Desenho clash = new Desenho(gl);
 		gl.glDisable(GL.GL_TEXTURE_2D);	//	Desabilita uso de textura
+
+
+                
+                
 	}
 
 	/**
@@ -192,6 +199,7 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		gl.glTranslatef(0,0,-obsZ);
 		gl.glRotatef(rotX,1,0,0);
 		gl.glRotatef(rotY,0,1,0);
+                
 	}
 	
 	/**
@@ -208,6 +216,7 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 		glu.gluPerspective(angle, fAspect, 0.2, 500);
 
 		posicionaObservador();
+                
 	}
 	
 	/**
@@ -254,12 +263,20 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 	 * Método da classe MouseAdapter que está sendo sobrescrito para gerenciar os 
 	 * eventos de clique de mouse, de maneira que sejá feito zoom in e zoom out.
 	 */  
+        
+     
+        
+        
+        
+        
 	public void mouseClicked(MouseEvent e)
 	{
 		if (e.getButton() == MouseEvent.BUTTON1) // Zoom in
-		if (angle >= 4) angle -= 4;
+                    if (angle >= 4) 
+                        angle -= 4;
 		if (e.getButton() == MouseEvent.BUTTON3) // Zoom out
-		if (angle <= 72) angle += 4;
+                    if (angle <= 72) 
+                        angle += 4;
 		glDrawable.display();
 	}
 
@@ -288,6 +305,12 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 										break;											
 			case KeyEvent.VK_ESCAPE:	System.exit(0);
 										break;
+                        
+                            
+                                    
+                            
+                            
+                            
 		}  
 		glDrawable.display();
 	}
@@ -301,6 +324,14 @@ public class Renderer extends MouseAdapter implements GLEventListener, KeyListen
 	 * Método definido na interface KeyListener.
 	 */       
 	public void keyReleased(KeyEvent e) { }
-}
+        
+        private static float Xrot, Yrot, Zrot, Xstep, Ystep, Zstep;
+        private static float Step = 5.0f;
+    
+        
+        
+
+        }
+
 
 

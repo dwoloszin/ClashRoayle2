@@ -21,7 +21,7 @@ public class Desenho {
     
     
     
-    public void desenhaClash(GL gl){
+    private void desenhaClash(GL gl){
     
         gl.glScalef(32.0f, 32.0f, 32.0f);
         // Clear the drawing area
@@ -312,8 +312,7 @@ public class Desenho {
         
         //torre do rei
       gl.glPushMatrix();
-   //   gl.glLoadIdentity();
-      gl.glTranslatef(-0.25f, 0.5f, -5.5f);
+      gl.glTranslatef(-0.25f, 0.55f, -5.5f);
       gl.glRotatef(0, 0.0f, 1.0f, 0.0f);
       gl.glBegin(GL.GL_QUADS);           	// Draw A Quad
       
@@ -458,9 +457,7 @@ public class Desenho {
             gl.glEnd();
             gl.glPopMatrix();
             gl.glPopMatrix();
-            
-            
-            
+             
         gl.glFlush();
       
       //rotação do quadrado
